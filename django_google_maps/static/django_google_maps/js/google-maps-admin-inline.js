@@ -41,7 +41,7 @@ class LocationFormGoogleMap {
     if (existingLocation) {
       lat = existingLocation[0];
       lng = existingLocation[1];
-      zoom = 12;
+      zoom = 18;
     }
 
     const latlng = new google.maps.LatLng(lat, lng);
