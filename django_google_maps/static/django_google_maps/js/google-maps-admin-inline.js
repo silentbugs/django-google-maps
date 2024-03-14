@@ -1,4 +1,17 @@
+
 /*
+Integration for Google Maps in the django admin.
+
+How it works:
+
+You have an address field on the page.
+Enter an address and an on change event will update the map
+with the address. A marker will be placed at the address.
+If the user needs to move the marker, they can and the geolocation
+field will be updated.
+
+Only one marker will remain present on the map at a time.
+
 This script expects:
 
 <input type="text" name="address" id="id_addresses-{index}-address" />
