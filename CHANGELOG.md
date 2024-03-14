@@ -1,3 +1,9 @@
+## [0.13.2] - 2024-03-14
+ - Added: Django >= 4.2.8 support (quiet admin change, see #34982)
+ - Changed: improve inline support
+ - Changed: beautify map
+ - Changed: cleanup widgets & templates (map & inline map)
+
 ## [0.13.1] - 2024-03-02
  - Added: Inline form support
 
