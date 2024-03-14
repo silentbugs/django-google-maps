@@ -15,7 +15,7 @@
 }
 
 #id_address,
-input[id^="id_locations-"][id$="-address"] {
+input[id^="id_addresses-"][id$="-address"] {
   width: 40em;
   max-width: 100%;
 }
@@ -25,7 +25,7 @@ input[id^="id_locations-"][id$="-address"] {
 }
 
 #map_canvas,
-[id^="locations-"][id$="-address_map_canvas"] {
+[id^="addresses-"][id$="-address_map_canvas"] {
   width: 100%;
   height: 30em;
 }

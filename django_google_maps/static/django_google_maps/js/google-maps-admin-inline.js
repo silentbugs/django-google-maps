@@ -1,20 +1,21 @@
 /*
 This script expects:
 
-<input type="text" name="address" id="id_locations-{index}-address" />
-<input type="text" name="geolocation" id="id_locations-{index}-geolocation" />
+<input type="text" name="address" id="id_addresses-{index}-address" />
+<input type="text" name="geolocation" id="id_addresses-{index}-geolocation" />
 */
 
 class LocationFormGoogleMap {
   constructor(index) {
+    this.prefix = 'addresses';
     this.index = index;
     this.autocomplete = null;
     this.geocoder = new google.maps.Geocoder();
     this.map = null;
     this.marker = null;
-    this.geolocationId = `id_locations-${index}-geolocation`;
-    this.addressId = `id_locations-${index}-address`;
-    this.mapCanvasId = `locations-${index}-address_map_canvas`;
+    this.geolocationId = `id_${this.prefix}-${index}-geolocation`;
+    this.addressId = `id_${this.prefix}-${index}-address`;
+    this.mapCanvasId = `${this.prefix}-${index}-address_map_canvas`;
   }
 
   initialize() {
@@ -141,7 +142,7 @@ class LocationFormGoogleMap {
 }
 
 $(document).ready(function () {
-  const addressInputSelector = "input[id^='id_locations-'][id$='-address']:visible";
+  const addressInputSelector = "input[id^='id_addresses-'][id$='-address']:visible";
 
   // Initialize existing location forms
   $(addressInputSelector).each(function (index) {
