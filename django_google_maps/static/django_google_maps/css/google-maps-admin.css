@@ -1,17 +1,5 @@
-@media (min-width: 848px) {
-  .map_canvas_wrapper {
-    margin-left: 170px;
-  }
-
-  .main.shifted .map_canvas_wrapper {
-    margin-left: 0;
-  }
-}
-
-@media (min-width: 1118px) {
-  .main.shifted .map_canvas_wrapper {
-    margin-left: 170px;
-  }
+.maps-widget {
+  width: 100%;
 }
 
 #id_address,

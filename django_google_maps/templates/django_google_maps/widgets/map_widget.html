@@ -1,2 +1,5 @@
-{% include "django/forms/widgets/text.html" %}
-<div class="map_canvas_wrapper"><div id="map_canvas"></div></div>
+{% extends "django_google_maps/widgets/base_map_widget.html" %}
+
+{% block map_widget_content %}
+<div id="map_canvas"></div>
+{% endblock %}
