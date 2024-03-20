@@ -1,3 +1,6 @@
+## [0.13.3] - 2024-03-20
+ - Added: Postcode field that saves the place's postcode
+
 ## [0.13.2] - 2024-03-14
  - Added: Django >= 4.2.8 support (quiet admin change, see #34982)
  - Changed: improve inline support
