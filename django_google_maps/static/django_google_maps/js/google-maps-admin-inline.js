@@ -157,15 +157,20 @@ class LocationFormGoogleMap {
 	}
 
 	extractAndSavePostcode(place) {
-		const postcode = place.address_components.find(item => item.types[0] === "postal_code").long_name;
+		const addressComponent = place.address_components.find(item => item.types.includes("postal_code"));
 
-		// replace all white spaces
-		let regex = new RegExp("\\s+", "g");
-		const postcodeValue = postcode.replace(regex, "");
+		let postcodeValue = ''; // Default to empty string if no postal code is found
 
-		// save field value
+		if (addressComponent) {
+			// If a postal code is found, format it by removing all white spaces
+			const postcode = addressComponent.long_name;
+			const regex = new RegExp("\\s+", "g");
+			postcodeValue = postcode.replace(regex, "");
+		}
+
+		// Save the postal code value, which might be an empty string
 		document.getElementById(this.postCodeId).value = postcodeValue;
-		$(`#${this.postCodeId}`).trigger("change");
+		document.getElementById(this.postCodeId).dispatchEvent(new Event('change'));
 	}
 }
 
