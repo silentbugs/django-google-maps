@@ -30,6 +30,7 @@ function googleMapAdmin() {
 
 	var geolocationId = 'id_geolocation';
 	var addressId = 'id_address';
+	var postCodeId = 'id_post_code';
 
 	var self = {
 		initialize: function() {
@@ -113,12 +114,14 @@ function googleMapAdmin() {
 
 			if(place.geometry !== undefined) {
 				self.updateWithCoordinates(place.geometry.location);
+				self.extractAndSavePostcode(place);
 			}
 			else {
 				geocoder.geocode({'address': place.name}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
 						var latlng = results[0].geometry.location;
 						self.updateWithCoordinates(latlng);
+						self.extractAndSavePostcode(place);
 					} else {
 						alert("Geocode was not successful for the following reason: " + status);
 					}
@@ -167,6 +170,18 @@ function googleMapAdmin() {
 		updateGeolocation: function(latlng) {
 			document.getElementById(geolocationId).value = latlng.lat() + "," + latlng.lng();
 			$("#" + geolocationId).trigger('change');
+		}
+
+		extractAndSavePostcode: function(place) {
+			const postcode = place.address_components.find(item => item.types[0] === "postal_code").long_name;
+
+			// replace all white spaces
+			let regex = new RegExp("\\s+", "g");
+			const postcodeValue = postcode.replace(regex, "");
+
+			// save field value
+			document.getElementById(postCodeId).value = postcodeValue;
+			$(`#${postCodeId}`).trigger("change");
 		}
 	};
 

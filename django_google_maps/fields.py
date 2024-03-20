@@ -94,6 +94,10 @@ class AddressField(models.CharField):
     pass
 
 
+class PostCodeField(models.CharField):
+    pass
+
+
 class GeoLocationField(models.CharField):
     """
     A geographical point, specified by floating-point latitude and longitude

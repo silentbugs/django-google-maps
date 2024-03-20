@@ -35,6 +35,7 @@ USAGE:
       class Rental(models.Model):
           address = map_fields.AddressField(max_length=200)
           geolocation = map_fields.GeoLocationField(max_length=100)
+          post_code = map_fields.PostCodeField(max_length=10)
 
 -  in the ``admin.py`` include the following as a formfield_override
 
@@ -106,6 +107,7 @@ USING INLINE FORMS:
           shipment = models.ForeignKey(Shipment)
           address = map_fields.AddressField(max_length=200)
           geolocation = map_fields.GeoLocationField(max_length=50)
+          post_code = map_fields.PostCodeField(max_length=10)
 
 -  in the ``forms.py`` file, define the form and set widget for "address" field:
 

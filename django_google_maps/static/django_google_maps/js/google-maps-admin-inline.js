@@ -27,6 +27,7 @@ class LocationFormGoogleMap {
 		this.map = null;
 		this.marker = null;
 		this.geolocationId = `id_${this.prefix}-${index}-geolocation`;
+		this.postCodeId = `id_${this.prefix}-${index}-post_code`;
 		this.addressId = `id_${this.prefix}-${index}-address`;
 		this.mapCanvasId = `${this.prefix}-${index}-address_map_canvas`;
 	}
@@ -100,11 +101,13 @@ class LocationFormGoogleMap {
 
 		if (place.geometry !== undefined) {
 			this.updateWithCoordinates(place.geometry.location);
+			this.extractAndSavePostcode(place);
 		} else {
 			this.geocoder.geocode({ address: place.name }, (results, status) => {
 				if (status == google.maps.GeocoderStatus.OK) {
 					const latlng = results[0].geometry.location;
 					this.updateWithCoordinates(latlng);
+					this.extractAndSavePostcode(place);
 				} else {
 					alert("Geocode was not successful for the following reason: " + status);
 				}
@@ -151,6 +154,18 @@ class LocationFormGoogleMap {
 	updateGeolocation(latlng) {
 		document.getElementById(this.geolocationId).value = latlng.lat() + "," + latlng.lng();
 		$(`#${this.geolocationId}`).trigger("change");
+	}
+
+	extractAndSavePostcode(place) {
+		const postcode = place.address_components.find(item => item.types[0] === "postal_code").long_name;
+
+		// replace all white spaces
+		let regex = new RegExp("\\s+", "g");
+		const postcodeValue = postcode.replace(regex, "");
+
+		// save field value
+		document.getElementById(this.postCodeId).value = postcodeValue;
+		$(`#${this.postCodeId}`).trigger("change");
 	}
 }
 
