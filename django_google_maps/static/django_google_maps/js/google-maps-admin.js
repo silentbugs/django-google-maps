@@ -169,7 +169,7 @@ function googleMapAdmin() {
 		updateGeolocation: function(latlng) {
 			document.getElementById(geolocationId).value = latlng.lat() + "," + latlng.lng();
 			$("#" + geolocationId).trigger('change');
-		}
+		},
 
 		extractAndSavePostcode: function(place) {
 			const addressComponent = place.address_components.find(item => item.types.includes("postal_code"));
