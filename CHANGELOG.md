@@ -1,3 +1,8 @@
+## [0.13.4] - 2024-03-21
+ - Changed: Code cleanup, extract common javascript to base class
+ - Changed: jQuery version 3.7.1
+ - Changed: remove most jQuery dependencies
+
 ## [0.13.3] - 2024-03-20
  - Added: Postcode field that saves the place's postcode
 
