@@ -10,7 +10,9 @@ class BaseGoogleMapsAddressWidget(widgets.TextInput):
         js = [
             'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js',
             'https://maps.google.com/maps/api/js?key={}&libraries=places'.format(
-                settings.GOOGLE_MAPS_API_KEY),
+                settings.GOOGLE_MAPS_API_KEY
+            ),
+            'django_google_maps/js/google-maps-admin-base.js',
         ]
 
 
