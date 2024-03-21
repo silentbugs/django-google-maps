@@ -105,9 +105,10 @@ class LocationFormGoogleMap {
 		} else {
 			this.geocoder.geocode({ address: place.name }, (results, status) => {
 				if (status == google.maps.GeocoderStatus.OK) {
-					const latlng = results[0].geometry.location;
+					const _place = results[0];
+					const latlng = _place.geometry.location;
 					this.updateWithCoordinates(latlng);
-					this.extractAndSavePostcode(place);
+					this.extractAndSavePostcode(_place);
 				} else {
 					alert("Geocode was not successful for the following reason: " + status);
 				}

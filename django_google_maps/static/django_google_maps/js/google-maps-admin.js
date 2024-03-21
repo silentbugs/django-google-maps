@@ -118,9 +118,10 @@ function googleMapAdmin() {
 			} else {
 				geocoder.geocode({'address': place.name}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
-						var latlng = results[0].geometry.location;
+						var _place = results[0];
+						var latlng = _place.geometry.location;
 						self.updateWithCoordinates(latlng);
-						self.extractAndSavePostcode(place);
+						self.extractAndSavePostcode(_place);
 					} else {
 						alert("Geocode was not successful for the following reason: " + status);
 					}
