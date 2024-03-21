@@ -183,8 +183,8 @@ function googleMapAdmin() {
 				postcodeValue = postcode.replace(regex, "");
 			}
 
-			document.getElementById(this.postCodeId).value = postcodeValue;
-			document.getElementById(this.postCodeId).dispatchEvent(new Event('change'));
+			document.getElementById(postCodeId).value = postcodeValue;
+			document.getElementById(postCodeId).dispatchEvent(new Event('change'));
 		}
 	};
 
