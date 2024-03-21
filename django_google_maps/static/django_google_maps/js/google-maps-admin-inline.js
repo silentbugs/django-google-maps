@@ -159,7 +159,7 @@ class LocationFormGoogleMap {
 	extractAndSavePostcode(place) {
 		const addressComponent = place.address_components.find(item => item.types.includes("postal_code"));
 
-		let postcodeValue = ''; // Default to empty string if no postal code is found
+		let postcodeValue = '';
 
 		if (addressComponent) {
 			// If a postal code is found, format it by removing all white spaces
@@ -168,7 +168,6 @@ class LocationFormGoogleMap {
 			postcodeValue = postcode.replace(regex, "");
 		}
 
-		// Save the postal code value, which might be an empty string
 		document.getElementById(this.postCodeId).value = postcodeValue;
 		document.getElementById(this.postCodeId).dispatchEvent(new Event('change'));
 	}

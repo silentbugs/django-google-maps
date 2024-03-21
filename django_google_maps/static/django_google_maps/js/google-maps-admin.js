@@ -115,8 +115,7 @@ function googleMapAdmin() {
 			if(place.geometry !== undefined) {
 				self.updateWithCoordinates(place.geometry.location);
 				self.extractAndSavePostcode(place);
-			}
-			else {
+			} else {
 				geocoder.geocode({'address': place.name}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
 						var latlng = results[0].geometry.location;
@@ -175,7 +174,7 @@ function googleMapAdmin() {
 		extractAndSavePostcode: function(place) {
 			const addressComponent = place.address_components.find(item => item.types.includes("postal_code"));
 
-			let postcodeValue = ''; // Default to empty string if no postal code is found
+			let postcodeValue = '';
 
 			if (addressComponent) {
 				// If a postal code is found, format it by removing all white spaces
@@ -184,7 +183,6 @@ function googleMapAdmin() {
 				postcodeValue = postcode.replace(regex, "");
 			}
 
-			// Save the postal code value, which might be an empty string
 			document.getElementById(this.postCodeId).value = postcodeValue;
 			document.getElementById(this.postCodeId).dispatchEvent(new Event('change'));
 		}
