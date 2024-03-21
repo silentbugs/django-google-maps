@@ -75,7 +75,7 @@ class LocationFormGoogleMapBase {
 		const mapType = geolocationInput.getAttribute("data-map-type");
 
 		if (mapType && -1 !== allowedType.indexOf(mapType)) return mapType;
-		return google.maps.MapTypeId.HYBRID;
+		return google.maps.MapTypeId.ROADMAP;
 	}
 
 	getAutoCompleteOptions() {
