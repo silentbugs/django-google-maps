@@ -119,6 +119,36 @@ class LocationFormGoogleMapBase {
 		}
 	}
 
+	updateAddressFields(place) {
+		const addressInput = document.getElementById(this.addressId);
+
+		// Update the address input field with the formatted address
+		addressInput.value = place.formatted_address;
+		addressInput.dispatchEvent(new Event('change'));
+	}
+
+	reverseGeocode(latlng) {
+		this.geocoder.geocode({ location: latlng }, (results, status) => {
+			if (status === google.maps.GeocoderStatus.OK) {
+				if (results[0]) {
+					const place = results[0];
+
+					// You now have access to the place details
+					this.updateAddressFields(place);
+					this.extractAndSavePostcode(place);
+
+					// You can also log the place details if needed
+					console.log(place);
+				} else {
+					alert("No results found");
+				}
+			} else {
+				alert("Geocoder failed due to: " + status);
+			}
+		});
+	}
+
+
 	updateWithCoordinates(latlng) {
 		this.map.setCenter(latlng);
 		this.map.setZoom(18);
@@ -147,7 +177,11 @@ class LocationFormGoogleMapBase {
 	addMarkerDrag(marker) {
 		marker.setDraggable(true);
 		google.maps.event.addListener(marker, "dragend", (new_location) => {
-			this.updateGeolocation(new_location.latLng);
+			const latlng = new_location.latLng;
+			this.updateGeolocation(latlng);
+
+			// Perform reverse geocoding to get the place details for the new location
+			this.reverseGeocode(latlng);
 		});
 	}
 
