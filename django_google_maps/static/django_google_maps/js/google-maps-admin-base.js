@@ -67,6 +67,10 @@ class LocationFormGoogleMapBase {
 				return false;
 			}
 		});
+		addressInput.addEventListener('input', (e) => {
+			this.clearGeolocation();
+			this.clearPostcode();
+		});
 	}
 
 	getMapType() {
@@ -149,6 +153,16 @@ class LocationFormGoogleMapBase {
 
 	updateMarker(latlng) {
 		this.marker.setPosition(latlng);
+	}
+
+	clearGeolocation() {
+		const geolocationInput = document.getElementById(this.geolocationId);
+		geolocationInput.value = '';
+	}
+
+	clearPostcode() {
+		const postcodeInput = document.getElementById(this.postCodeId);
+		postcodeInput.value = '';
 	}
 
 	updateGeolocation(latlng) {
