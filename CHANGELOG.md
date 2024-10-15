@@ -1,3 +1,7 @@
+## [0.13.5] - 2024-10-15
+ - Changed: Clear geolocation and postcode when user manually edits their address
+ - Added: Reverse geocoding based on marker drag location
+
 ## [0.13.4] - 2024-03-21
  - Changed: Code cleanup, extract common javascript to base class
  - Changed: jQuery version 3.7.1
