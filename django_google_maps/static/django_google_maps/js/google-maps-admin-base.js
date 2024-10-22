@@ -148,7 +148,6 @@ class LocationFormGoogleMapBase {
 		});
 	}
 
-
 	updateWithCoordinates(latlng) {
 		this.map.setCenter(latlng);
 		this.map.setZoom(18);
@@ -204,7 +203,6 @@ class LocationFormGoogleMapBase {
 		geolocationInput.value = `${latlng.lat()},${latlng.lng()}`;
 		geolocationInput.dispatchEvent(new Event('change'));
 	}
-
 
 	extractAndSavePostcode(place) {
 		const addressComponent = place.address_components.find(item => item.types.includes("postal_code"));
